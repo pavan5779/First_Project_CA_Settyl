@@ -3,10 +3,6 @@ apiVersion: networking.k8s.io/v1
 metadata:
   name: supplychainvisibility-ingress
   namespace: supplychainvisibility
-  uid: 5d688938-e6c9-48be-9a23-db0dab9112f0
-  resourceVersion: '16842827'
-  generation: 11
-  creationTimestamp: '2024-09-17T07:07:25Z'
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt
     kubernetes.io/ingress.class: nginx
