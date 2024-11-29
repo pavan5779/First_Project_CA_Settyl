@@ -1,0 +1,519 @@
+kind: Ingress
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: supplychainvisibility-ingress
+  namespace: supplychainvisibility
+  uid: 5d688938-e6c9-48be-9a23-db0dab9112f0
+  resourceVersion: '16842827'
+  generation: 11
+  creationTimestamp: '2024-09-17T07:07:25Z'
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/affinity: cookie
+    nginx.ingress.kubernetes.io/proxy-body-size: '0'
+    nginx.ingress.kubernetes.io/proxy-read-timeout: '600'
+    nginx.ingress.kubernetes.io/proxy-send-timeout: '600'
+    nginx.ingress.kubernetes.io/server-snippet: |
+      client_header_buffer_size 100k;
+      large_client_header_buffers 4 100k;
+    nginx.ingress.kubernetes.io/session-cookie-expires: '172800'
+    nginx.ingress.kubernetes.io/session-cookie-max-age: '172800'
+    nginx.ingress.kubernetes.io/session-cookie-path: /
+    nginx.ingress.kubernetes.io/session-cookie-samesite: None
+    nginx.ingress.kubernetes.io/session-cookie-secure: 'true'
+    nginx.ingress.kubernetes.io/use-regex: 'true'
+    nginx.ingress.kubernetes.io/websocket-services: notificationhandlerconsumer,supplierengagementsocket
+  managedFields:
+    - manager: nginx-ingress-controller
+      operation: Update
+      apiVersion: networking.k8s.io/v1
+      time: '2024-09-17T07:08:13Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        f:status:
+          f:loadBalancer:
+            f:ingress: {}
+      subresource: status
+    - manager: Mozilla
+      operation: Update
+      apiVersion: networking.k8s.io/v1
+      time: '2024-10-22T19:44:22Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        f:metadata:
+          f:annotations:
+            .: {}
+            f:cert-manager.io/cluster-issuer: {}
+            f:kubernetes.io/ingress.class: {}
+            f:nginx.ingress.kubernetes.io/affinity: {}
+            f:nginx.ingress.kubernetes.io/proxy-body-size: {}
+            f:nginx.ingress.kubernetes.io/proxy-read-timeout: {}
+            f:nginx.ingress.kubernetes.io/proxy-send-timeout: {}
+            f:nginx.ingress.kubernetes.io/server-snippet: {}
+            f:nginx.ingress.kubernetes.io/session-cookie-expires: {}
+            f:nginx.ingress.kubernetes.io/session-cookie-max-age: {}
+            f:nginx.ingress.kubernetes.io/session-cookie-path: {}
+            f:nginx.ingress.kubernetes.io/session-cookie-samesite: {}
+            f:nginx.ingress.kubernetes.io/session-cookie-secure: {}
+            f:nginx.ingress.kubernetes.io/use-regex: {}
+            f:nginx.ingress.kubernetes.io/websocket-services: {}
+        f:spec:
+          f:ingressClassName: {}
+          f:rules: {}
+          f:tls: {}
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - staging.golive.settyl.com
+      secretName: tls-secret
+  rules:
+    - host: staging.golive.settyl.com
+      http:
+        paths:
+          - path: /api/config/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: configmanagementapi
+                port:
+                  number: 8000
+          - path: /api/auth/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: userauthenticationapi
+                port:
+                  number: 8000
+          - path: /api/usermanagement/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: usermanagementapi
+                port:
+                  number: 8000
+          - path: /api/usergroup/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: usermanagementapi
+                port:
+                  number: 8000
+          - path: /api/dashboard/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: dashboardapi
+                port:
+                  number: 8000
+          - path: /api/smartpackage/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: smartpackageapi
+                port:
+                  number: 8000
+          - path: /api/pomanagement/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: purchaseorderapi
+                port:
+                  number: 8000
+          - path: /api/loaddesign/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: loaddesignapi
+                port:
+                  number: 8000
+          - path: /api/loadsmanagement/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: loadsmanagementapi
+                port:
+                  number: 8000
+          - path: /api/porequisition/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: porequisitionapi
+                port:
+                  number: 8000
+          - path: /api/autonomousdispatch/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: autonomousdispatchapi
+                port:
+                  number: 8000
+          - path: /api/claimsmanagement/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: claimsmanagementapi
+                port:
+                  number: 8000
+          - path: /api/notificationrules/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: notificationengineapi
+                port:
+                  number: 8000
+          - path: /api/notificationengine/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: notificationengineapi
+                port:
+                  number: 8000
+          - path: /api/connectors/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: connectorsapi
+                port:
+                  number: 8000
+          - path: /api/assetsmanagement/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: assetsmanagementapi
+                port:
+                  number: 8000
+          - path: /api/realtimelocation/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: realtimelocationapi
+                port:
+                  number: 8000
+          - path: /api/deliverymanagement/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: deliverymanagementapi
+                port:
+                  number: 8000
+          - path: /api/smartdocs/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: smartdocsapi
+                port:
+                  number: 8000
+          - path: /api/mlbasemodel/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: mlbasemodelapi
+                port:
+                  number: 8000
+          - path: /api/poattributesmodel/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: pomodel
+                port:
+                  number: 8000
+          - path: /api/routing/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: smartroutenodeapi
+                port:
+                  number: 8000
+          - path: /smartrouteortools/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: smartrouteforecastfastapi
+                port:
+                  number: 8000
+          - path: /api/optionset/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: optionsetapi
+                port:
+                  number: 8000
+          - path: /api/entityvisibility/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: entityvisibilityapi
+                port:
+                  number: 8000
+          - path: /api/dockscheduling/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: dockschedulingapi
+                port:
+                  number: 8000
+          - path: /api/intermodalvisibility/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: intermodalvisibilityapi
+                port:
+                  number: 8000
+          - path: /api/containerevents/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: intermodalvisibilityapi
+                port:
+                  number: 8000
+          - path: /api/deliveryorchestration/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: deliveryorchestrationapi
+                port:
+                  number: 8000
+          - path: /api/subscription/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: subscriptionapi
+                port:
+                  number: 8000
+          - path: /api/lowcodeplatform/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: lowcodeplatformapi
+                port:
+                  number: 8000
+          - path: /api/predictedarrivaltime/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: predictedarrivaltimeapi
+                port:
+                  number: 8000
+          - path: /api/mobileauth/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: mobileappauth
+                port:
+                  number: 8000
+          - path: /api/mobileapp/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: mobileappapi
+                port:
+                  number: 8000
+          - path: /api/analyticsengine/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: analyticsengineapi
+                port:
+                  number: 8000
+          - path: /api/oceanvisibility/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: oceanvisibilityapi
+                port:
+                  number: 8000
+          - path: /api/inventoryvisibility/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: inventoryvisibilityapi
+                port:
+                  number: 8000
+          - path: /api/inventoryadjustment/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: inventoryvisibilityapi
+                port:
+                  number: 8000
+          - path: /api/supplierengagement/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: supplierengagementapi
+                port:
+                  number: 8000
+          - path: /api/otrulip/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: otrulipapi
+                port:
+                  number: 8000
+          - path: /api/exportservice/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: exportserviceapi
+                port:
+                  number: 8000
+          - path: /api/productionenablement/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: productionenablementapi
+                port:
+                  number: 8000
+          - path: /api/invoicesettlements/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: invoicesettlementsapi
+                port:
+                  number: 8000
+          - path: /api/intermodalvisibility/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: intermodalvisibilityapi
+                port:
+                  number: 8000
+          - path: /api/simtracking/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: simtrackingapi
+                port:
+                  number: 8000
+          - path: /api/freightbooking/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: freightbookingapi
+                port:
+                  number: 8000
+          - path: /api/productlabel/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: productlabelapi
+                port:
+                  number: 8000
+          - path: /api/warehouseengagement/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: warehouseengagementapi
+                port:
+                  number: 8000
+          - path: /api/rmintelligence/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: rmintelligence
+                port:
+                  number: 8000
+          - path: /fastapi/intermodalvisibility/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: intermodalvisibilityfastapi
+                port:
+                  number: 8000
+          - path: /fastapi/model/intermodalvisibility/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: intermodalvisibilitymodelfastapi
+                port:
+                  number: 8000
+          - path: /fastapi/chatservices/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: chatservices
+                port:
+                  number: 8000
+          - path: /supplierengagement/socket/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: supplierengagementsocket
+                port:
+                  number: 8000
+          - path: /mobilegateway/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: mobileappgateway
+                port:
+                  number: 8000
+          - path: /appnotification/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: notificationhandlerconsumer
+                port:
+                  number: 8000
+          - path: /api/config/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: configmanagementapi
+                port:
+                  number: 8000
+          - path: /api/contracteditorapi/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: contracteditorapi
+                port:
+                  number: 8000
+          - path: /api/ocrplatform/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: ocrplatformtapi
+                port:
+                  number: 8000
+          - path: /api/conversations/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: conversationapi
+                port:
+                  number: 8000
+          - path: /api/ewaybill/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: ewaybillinvoiceapi
+                port:
+                  number: 8000
+          - path: /api/serialnumbers/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: serialnumbersapi
+                port:
+                  number: 8000
+          - path: /api/search/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: globalsearchapi
+                port:
+                  number: 8000
+          - path: /?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: webredesign
+                port:
+                  number: 8000
+status:
+  loadBalancer:
+    ingress:
+      - ip: 4.255.0.205
