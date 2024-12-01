@@ -60,10 +60,10 @@ metadata:
           f:tls: {}
 spec:
   ingressClassName: nginx
-  tls:
-    - hosts:
-        - staging.golive.settyl.com
-      secretName: tls-secret
+  # tls:
+  #   - hosts:
+  #       - staging.golive.settyl.com
+  #     secretName: tls-secret
   rules:
     - host: staging.golive.settyl.com
       http:
