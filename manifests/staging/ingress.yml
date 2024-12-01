@@ -10,9 +10,9 @@ metadata:
     nginx.ingress.kubernetes.io/proxy-body-size: '0'
     nginx.ingress.kubernetes.io/proxy-read-timeout: '600'
     nginx.ingress.kubernetes.io/proxy-send-timeout: '600'
-    nginx.ingress.kubernetes.io/server-snippet: |
-      client_header_buffer_size 100k;
-      large_client_header_buffers 4 100k;
+    # nginx.ingress.kubernetes.io/server-snippet: |
+    #   client_header_buffer_size 100k;
+    #   large_client_header_buffers 4 100k;
     nginx.ingress.kubernetes.io/session-cookie-expires: '172800'
     nginx.ingress.kubernetes.io/session-cookie-max-age: '172800'
     nginx.ingress.kubernetes.io/session-cookie-path: /
