@@ -11,7 +11,7 @@ spec:
     # - host: gke.staging.golive.settyl.com
     - http:
         paths:
-          - path: /api/healthcheck/?(.*)
+          - path: /api/healthcheck
             pathType: Prefix
             backend:
               service:
