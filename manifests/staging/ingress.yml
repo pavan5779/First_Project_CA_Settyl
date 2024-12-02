@@ -65,7 +65,7 @@ spec:
   #       - staging.golive.settyl.com
   #     secretName: tls-secret
   rules:
-    - host: staging.golive.settyl.com
+    - host: gke.staging.golive.settyl.com
       http:
         paths:
           - path: /api/config/?(.*)
