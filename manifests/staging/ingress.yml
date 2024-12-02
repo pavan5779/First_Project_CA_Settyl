@@ -11,20 +11,20 @@ spec:
     # - host: gke.staging.golive.settyl.com
     - http:
         paths:
-          - path: /api/config/?(.*)
+          - path: /api/healthcheck/?(.*)
             pathType: Prefix
             backend:
               service:
                 name: configmanagementapi
                 port:
                   number: 8000
-          - path: /api/auth/?(.*)
-            pathType: Prefix
-            backend:
-              service:
-                name: userauthenticationapi
-                port:
-                  number: 8000
+          # - path: /api/auth/?(.*)
+          #   pathType: Prefix
+          #   backend:
+          #     service:
+          #       name: userauthenticationapi
+          #       port:
+          #         number: 8000
           # Add remaining paths as per your requirement
   # tls:
   #   - hosts:
