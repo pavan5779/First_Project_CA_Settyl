@@ -8,8 +8,8 @@ metadata:
     networking.gke.io/managed-certificates: "supplychainvisibility-cert"
 spec:
   rules:
-    - host: gke.staging.golive.settyl.com
-      http:
+    # - host: gke.staging.golive.settyl.com
+    - http:
         paths:
           - path: /api/config/?(.*)
             pathType: Prefix
