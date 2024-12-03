@@ -8,9 +8,9 @@ metadata:
     networking.gke.io/managed-certificates: "supplychainvisibility-cert"
 spec:
   rules:
-    # - host: gke.staging.golive.settyl.com
     - http:
         paths:
+          # Path to match /api/config/healthcheck
           - path: /api/config/healthcheck
             pathType: Prefix
             backend:
@@ -18,15 +18,15 @@ spec:
                 name: configmanagementapi
                 port:
                   number: 8000
-          # - path: /api/auth/?(.*)
-          #   pathType: Prefix
-          #   backend:
-          #     service:
-          #       name: userauthenticationapi
-          #       port:
-          #         number: 8000
-          # Add remaining paths as per your requirement
+          # Path for direct healthcheck endpoint
+          - path: /api/healthcheck
+            pathType: Prefix
+            backend:
+              service:
+                name: configmanagementapi
+                port:
+                  number: 8000
   # tls:
   #   - hosts:
-  #       - staging.golive.settyl.com
+  #       - gke.staging.golive.settyl.com
   #     secretName: tls-secret
