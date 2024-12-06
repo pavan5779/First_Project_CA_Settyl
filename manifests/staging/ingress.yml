@@ -4,10 +4,10 @@ metadata:
   name: supplychainvisibility-ingress
   namespace: supplychainvisibility
   annotations:
-    kubernetes.io/ingress.class: nginx
     networking.gke.io/managed-certificates: "supplychainvisibility-cert"
     cert-manager.io/cluster-issuer: letsencrypt 
 spec:
+  ingressClassName: nginx
   tls:
     - hosts:
         - gke.staging.golive.settyl.com
