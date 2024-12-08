@@ -4,16 +4,15 @@ metadata:
   name: supplychainvisibility-ingress
   namespace: supplychainvisibility
   annotations:
-    networking.gke.io/managed-certificates: "supplychainvisibility-cert"
-    cert-manager.io/cluster-issuer: letsencrypt 
+    cert-manager.io/cluster-issuer: letsencrypt
 spec:
   ingressClassName: nginx
   tls:
     - hosts:
         - gke.staging.golive.settyl.com
-      secretName: supplychainvisibility-tls 
+      secretName: supplychainvisibility-tls
   rules:
-    - host: gke.staging.golive.settyl.com 
+    - host: gke.staging.golive.settyl.com
       http:
         paths:
           - path: /api/healthcheck
